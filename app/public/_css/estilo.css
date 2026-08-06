@@ -1,0 +1,78 @@
+:root {
+    --color: white;
+    --color-visited: lightgrey;
+    --color-hover: grey;
+    --bg-color: linear-gradient(to bottom, black, blue, black, rgb(0, 0, 109));
+}
+
+body {
+    color: var(--color);
+    background-image: var(--bg-color);
+    /* background-image: linear-gradient(to bottom, black, blue); */
+    margin: 0px;
+    padding: 1em;
+}
+a {
+    color: var(--color);
+}
+a:visited {
+    color: var(--color-visited);
+}
+a:hover {
+    color: var(--color-hover);
+}
+img {
+    width: 100%;
+}
+
+#botao-menu, #menu {
+    display: none;
+}
+
+nav {
+    position: sticky;
+    top: 0px;
+    background-color: black;
+}
+nav > div {
+    position: relative;
+}
+nav > div:hover > div {
+    display: block;
+    position: absolute;
+}
+nav > div > div {
+    display: none;
+}
+
+#produtos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    max-width: 900px;
+    margin: auto;
+}
+#produtos article {
+    flex: 1 0 250px;
+    max-width: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        background-image: none;
+        background-color: lightblue;
+    }
+    #produtos article {
+        max-width: none;
+    }
+}
+
+@media print {
+    body {
+        background-image: none;
+        background-color: red;
+    }
+    h1 {
+        color: blue;
+    }
+}

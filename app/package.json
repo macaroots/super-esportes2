@@ -4,7 +4,8 @@
   "description": "Hello Node.js",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node express.js",
+    "dev": "node --watch express.js"
   },
   "keywords": [
     "Hello"
@@ -12,7 +13,6 @@
   "author": "Renato Lenz Costalima",
   "license": "Apache-2.0",
   "dependencies": {
-  },
-  "devDependencies": {
+    "express": "^5.2.1"
   }
 }

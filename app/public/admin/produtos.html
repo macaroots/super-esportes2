@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Esportes</title>
+</head>
+<body>
+    <header>
+        <h1>Super Esportes</h1>
+        <nav>
+            <a href="/">Início</a>
+            <a href="/detalhes.html">Detalhes</a>
+            <a href="/sobre.html">Sobre</a>
+            <div>
+                <span>Admin</span>
+                <div>
+                    <a href="/admin/produtos.html">Produtos</a>
+                    <a href="/admin/usuarios.html">Usuários</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Cadastro de produtos</h2>
+            <form method="post" action="/admin/produtos">
+                <label>
+                    <span>Nome:</span>
+                    <input type="text" name="nome">
+                </label>
+                <label>
+                    <span>Descrição:</span>
+                    <textarea name="descricao" rows="10" cols="30"></textarea>
+                </label>
+                <label>
+                    <span>Preço:</span>
+                    <input type="number" name="preco">
+                </label>
+                <label>
+                    <span>Foto:</span>
+                    <input type="file" name="foto">
+                </label>
+                <fieldset>
+                    <legend>Tamanho</legend>
+                    <label>
+                        <input name="tamanho" type="radio" value="p">
+                        <span>P</span>
+                    </label>
+                    <label>
+                        <input name="tamanho" type="radio" value="m">
+                        <span>M</span>
+                    </label>
+                    <label>
+                        <input name="tamanho" type="radio" value="g">
+                        <span>G</span>
+                    </label>
+                    <select name="tamanho2">
+                        <option value="p">Pequeno</option>
+                        <option value="m">Médio</option>
+                        <option value="g">Grande</option>
+                    </select>
+                </fieldset>
+
+
+                <input list="browsers">
+                <datalist id="browsers">
+                    <option value="Edge">
+                    <option value="Firefox">
+                    <option value="Chrome">
+                    <option value="Opera">
+                    <option value="Safari">
+                </datalist>
+                
+                <button>Enviar</button>
+            </form>
+        </section>
+        <section>
+            <h2>Lista de produtos</h2>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Tamanho</th>
+                    <th>Ações</th>
+                </tr>
+                <tr>
+                    <td>Nome1</td>
+                    <td>232</td>
+                    <td>P</td>
+                    <td>
+                        <button>editar</button>
+                        <button>apagar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nome1</td>
+                    <td>232</td>
+                    <td>P</td>
+                    <td>
+                        <button>editar</button>
+                        <button>apagar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nome1</td>
+                    <td>232</td>
+                    <td>P</td>
+                    <td>
+                        <button>editar</button>
+                        <button>apagar</button>
+                    </td>
+                </tr>
+            </table>
+
+        </section>
+    </main>
+    <footer>
+        <span>Super Esportes</span>
+        <address>
+            Written by John Doe.<br>
+            Visit us at:<br>
+            Example.com<br>
+            Box 564, Disneyland<br>
+            USA
+        </address>
+        <div>
+            Política de privacidade
+        </div>
+        <div>
+            <a href="/sobre.html">Feito por Renato Lenz</a>
+        </div>
+    </footer>
+</body>
+</html>
