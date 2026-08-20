@@ -13,6 +13,7 @@
   "author": "Renato Lenz Costalima",
   "license": "Apache-2.0",
   "dependencies": {
+    "ejs": "^6.0.1",
     "express": "^5.2.1"
   }
 }

@@ -1,0 +1,19 @@
+vendas,,,,,
+id PK,id_pessoa,data,id_produto,quantidade,preço
+1,1,2,1,2,3
+2,2,2,2,3,5
+3,2,3,3,1,2
+4,3,4,2,2,5
+,,,,,
+pessoas,,,,,
+id PK,nome,,,,
+1,a,,,,
+2,Bernardo,,,,
+3,c,,,,
+5,d,,,,
+,,,,,
+produtos,,,,,
+id PK,nome,,,,
+1,coca,,,,
+2,caderno,,,,
+3,caneta,,,,
