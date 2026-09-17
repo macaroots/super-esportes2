@@ -1,24 +1,23 @@
 const express = require('express');
+const CrudController = require('./CrudController');
 
-class ProdutosController {
-    constructor(produtosService) {
-        this.produtosService = produtosService;
-    }
+class ProdutosController extends CrudController {
     getRouter() {
-        const router = express.Router();
+        // REST para CSR (Client Side Rendering)
+        let router = super.getRouter();
+        
+        // SSR (Server Side Rendering)
         router.get('/teste', this.teste.bind(this));
-        router.post('/admin/produtos', this.inserir.bind(this));
-        router.get('/admin/produtos', this.listar.bind(this));
-        router.get('/admin/produtos/:id', this.ver.bind(this));
-        router.put('/admin/produtos/:id', this.alterar.bind(this));
+
         return router;
     }
     teste(req, res) {
         let nome = req.query.nome;
-        let produtos = this.produtosService.listar();
+        let produtos = this.service.listar();
         res.render('teste', {nome, produtos});
     }
-    inserir(req, res) {
+    
+    getBeanFromRequest(req) {
         let produto = {
             nome: req.body.nome,
             preco: parseFloat(req.body.preco),
@@ -26,37 +25,15 @@ class ProdutosController {
             foto: req.body.foto,
             tamanho: req.body.tamanho
         }
-        try {
-            this.produtosService.inserir(produto);
-            res.status(201).json({mensagem: 'Cadastrado com sucesso', produto})
-        } catch (e) {
-            res.status(400).send(e.message);
-        }
+        return produto;
     }
     listar(req, res) {
-        let produtos = this.produtosService.listar();
+        let produtos = this.service.listar();
         if (req.header('accept') == 'text/html') {
             res.render('teste', {nome: 'mundo', produtos});
         } else {
             res.json(produtos);
         }
-    }
-    ver(req, res) {
-        let id = req.params.id;
-        let produto = this.produtosService.ver(id);
-        res.json(produto);
-    }
-    alterar(req, res) {
-        let id = req.params.id;
-        let produto = {
-            nome: req.body.nome,
-            preco: parseFloat(req.body.preco),
-            descricao: req.body.descricao,
-            foto: req.body.foto,
-            tamanho: req.body.tamanho
-        }
-        this.produtosService.alterar(id, produto);
-        res.json('Produto alterado com sucesso!');
     }
 }
 module.exports = ProdutosController;
