@@ -25,16 +25,16 @@ class CrudController {
         }
     }
 
-    listar(req, res) {
-        let beans = this.service.listar();
+    async listar(req, res) {
+        let beans = await this.service.listar();
         res.json(beans);
     }
-    ver(req, res) {
+    async ver(req, res) {
         let id = req.params.id;
-        let bean = this.service.ver(id);
+        let bean = await this.service.ver(id);
         res.json(bean);
     }
-    alterar(req, res) {
+    async alterar(req, res) {
         let id = req.params.id;
         let bean = {
             nome: req.body.nome,
@@ -43,7 +43,7 @@ class CrudController {
             foto: req.body.foto,
             tamanho: req.body.tamanho
         }
-        this.service.alterar(id, bean);
+        await this.service.alterar(id, bean);
         res.json('bean alterado com sucesso!');
     }
 }

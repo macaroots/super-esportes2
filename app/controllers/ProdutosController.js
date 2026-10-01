@@ -7,13 +7,13 @@ class ProdutosController extends CrudController {
         let router = super.getRouter();
         
         // SSR (Server Side Rendering)
-        router.get('/teste', this.teste.bind(this));
+        router.get('/teste/ssr', this.teste.bind(this));
 
         return router;
     }
-    teste(req, res) {
+    async teste(req, res) {
         let nome = req.query.nome;
-        let produtos = this.service.listar();
+        let produtos = await this.service.listar();
         res.render('teste', {nome, produtos});
     }
     
@@ -27,8 +27,8 @@ class ProdutosController extends CrudController {
         }
         return produto;
     }
-    listar(req, res) {
-        let produtos = this.service.listar();
+    async listar(req, res) {
+        let produtos = await this.service.listar();
         if (req.header('accept') == 'text/html') {
             res.render('teste', {nome: 'mundo', produtos});
         } else {

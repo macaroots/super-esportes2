@@ -1,6 +1,6 @@
 class ListService {
     registros = [];
-    inserir(registro) {
+    async inserir(registro) {
         this.validar(registro);
         this.registros.push(registro);
         registro.id = this.registros.length;
@@ -8,13 +8,13 @@ class ListService {
     validar(registro) {
     }
 
-    listar() {
+    async listar() {
         return this.registros;
     }
-    ver(id) {
+    async ver(id) {
         return this.registros.filter(p => p.id == id)[0];
     }
-    alterar(id, registro) {
+    async alterar(id, registro) {
         this.validar(registro);
         let indice = this.registros.findIndex(p => p.id == id);
         let registroAntigo = this.registros[indice];

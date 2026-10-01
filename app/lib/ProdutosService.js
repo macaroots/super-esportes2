@@ -4,7 +4,7 @@ class ProdutosService extends ListService {
     getDesconto(preco) {
         return preco - preco * 0.1;
     }
-    inserir(produto) {
+    async inserir(produto) {
         produto.desconto = this.getDesconto(produto.preco);
         super.inserir(produto);
     }
