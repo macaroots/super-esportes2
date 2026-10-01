@@ -1,6 +1,6 @@
-const ListService = require('./ListService');
+const ListRepository = require('./ListRepository');
 
-class ProdutosService extends ListService {
+class ProdutosService extends ListRepository {
     getDesconto(preco) {
         return preco - preco * 0.1;
     }

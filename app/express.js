@@ -2,6 +2,8 @@ const express = require('express');
 const app = express()
 const port = 3000
 const ProdutosService = require('./lib/ProdutosService');
+// const UsuariosRepository = require('./lib/UsuariosRepository');
+const UsuariosMysqlRepository = require('./lib/UsuariosMysqlRepository');
 const UsuariosService = require('./lib/UsuariosService');
 const ProdutosController = require('./controllers/ProdutosController');
 const UsuariosController = require('./controllers/UsuariosController');
@@ -9,7 +11,15 @@ const jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
 
 const produtosService = new ProdutosService();
-const usuariosService = new UsuariosService();
+const dbConfig = {
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
+};
+const usuariosRepository = new UsuariosMysqlRepository(dbConfig);
+// const usuariosRepositoryList = new UsuariosRepository();
+const usuariosService = new UsuariosService(usuariosRepository);
 const produtosController = new ProdutosController(produtosService);
 const usuariosController = new UsuariosController(usuariosService);
 

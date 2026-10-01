@@ -1,18 +1,26 @@
-const ListService = require('./ListService');
 const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
 
-class UsuariosService extends ListService {
+class UsuariosService {
+    constructor(repository) {
+        this.repository = repository;
+    }
     async inserir(usuario) {
         usuario.senha = await bcrypt.hash(usuario.senha, saltRounds);
-        super.inserir(usuario);
+        this.repository.inserir(usuario);
     }
-    async procurarPorUsuario(usuario) {
-        return this.registros.filter(p => p.usuario == usuario)[0];
+    async listar() {
+        return this.repository.listar();
+    }
+    async alterar(id, registro) {
+        return await this.repository.alterar(id, registro);
+    }
+    async ver(id) {
+        return await this.repository.ver(id);
     }
     async logar(usuario) {
-        let usuarioBanco = await this.procurarPorUsuario(usuario.usuario);
+        let usuarioBanco = await this.repository.procurarPorUsuario(usuario.usuario);
         if (usuarioBanco && bcrypt.compare(usuario.senha, usuarioBanco.senha)) {
             return usuarioBanco;
         }

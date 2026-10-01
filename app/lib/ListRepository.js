@@ -1,4 +1,4 @@
-class ListService {
+class ListRepository {
     registros = [];
     async inserir(registro) {
         this.validar(registro);
@@ -21,4 +21,4 @@ class ListService {
         this.registros[indice] = {...registroAntigo, ...registro};
     }
 }
-module.exports = ListService;
+module.exports = ListRepository;
