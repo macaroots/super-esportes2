@@ -1,0 +1,89 @@
+<%- include('../cabecalho') %>
+<style>
+    .par{
+        background-color: green;
+    }
+    .impar{
+        background-color: red;
+    }
+</style>
+    <main>
+        <section>
+            <h2>Cadastro de usuários</h2>
+            <div id="mensagem"></div>
+            <form method="post" action="/admin/usuarios" onsubmit="event.preventDefault(); aoSubmeter()">
+                <label>
+                    <span>Usuário:</span>
+                    <input type="text" name="usuario">
+                </label>                
+                <label>
+                    <span>Senha:</span>
+                    <input type="password" name="senha">
+                </label>                
+                <label>
+                    <span>Confirmação de Senha:</span>
+                    <input type="password" name="confirmacao_senha">
+                </label>                
+                <button>Enviar</button>
+            </form>
+        </section>
+        <section>
+            <h2>Lista de usuários</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+<% for (let usuario of usuarios) { %>
+                <tr class="<%= usuario.id % 2 ? 'par':'impar' %>" id="u<%= usuario.id %>">
+                    <td><%= usuario.id %></td>
+                    <td><%= usuario.usuario %></td>
+                    <td>
+                        <button onclick="editar('<%= usuario.usuario %>')">editar</button>
+                        <button>apagar</button>
+                    </td>
+                </tr>
+<% } %>
+            </table>
+
+        </section>
+    </main>
+    <footer>
+        <span>Super Esportes</span>
+        <address>
+            Written by John Doe.<br>
+            Visit us at:<br>
+            Example.com<br>
+            Box 564, Disneyland<br>
+            USA
+        </address>
+        <div>
+            Política de privacidade
+        </div>
+        <div>
+            <a href="/sobre.html">Feito por Renato Lenz</a>
+        </div>
+    </footer>
+    <script>
+        function aoSubmeter() {
+            let form = document.querySelector('form');
+            let divMensagem = document.querySelector('#mensagem');
+            if (form.senha.value == '') {
+                divMensagem.innerText = 'Senha não pode ser em branco!';
+            }
+            else if (form.senha.value != form.confirmacao_senha.value) {
+                divMensagem.innerText = 'Senha e confirmação não coincidem!';
+            }
+            else {
+                form.submit();
+            }
+        }
+
+        function editar(id) {
+            let form = document.querySelector('form');
+            form.usuario.value = id;
+        }
+    </script>
+</body>
+</html>
